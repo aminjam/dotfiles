@@ -1,0 +1,51 @@
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+if [ -f ~/.git-completion.bash ]; then
+  source ~/.git-prompt.sh
+fi
+
+PS1='\[\e[1;32m\]\W\[\e[0;36m\]$(__git_ps1 " %s") > \[\e[0m\]'
+export CLICOLOR=1
+export LSCOLORS=HxFxhxDxBxhxhxhxhxcxcx
+export EDITOR=nvim
+export LIBVA_DRIVER_NAME=vdpau
+export PLATFORM=$(uname -s)
+
+# Aliases
+# -------------------------------------------------------------------
+alias vi='nvim'
+alias vim='nvim'
+alias l='ls -alF'
+alias k5='kill -9 %%'
+alias grep='grep --color=auto'
+
+
+# boot2docker
+# --------------------------------------------------------------------
+if [ "$PLATFORM" = 'Darwin' ]; then
+  dockerinit() {
+    [ $(boot2docker status) = 'running' ] || boot2docker start
+    $(boot2docker shellinit 2> /dev/null)
+  }
+fi
+
+# fzf (https://github.com/junegunn/fzf)
+# --------------------------------------------------------------------
+
+export FZF_DEFAULT_OPTS='-x'
+
+# fd - cd to selected directory
+fd() {
+  DIR=`find ${1:-*} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf-tmux` \
+    && cd "$DIR"
+}
+
+# fe [FUZZY PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fe() {
+  local file
+  file=$(fzf-tmux --query="$1" --select-1 --exit-0)
+  [ -n "$file" ] && ${EDITOR:-vim} "$file"
+}
