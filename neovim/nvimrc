@@ -32,7 +32,7 @@ call plug#end()
 if has('gui_running')
   set guifont=Monaco:h14 columns=80 lines=40
 endif
-silent! colo pablo
+silent! colo seoul256
 
 "
 let mapleader      = ' '
@@ -54,6 +54,10 @@ set expandtab
 " Make it obvious where 80 characters is
 set textwidth=80
 set colorcolumn=+1
+
+" fat-finger mappings
+command! -bang Q q<bang>
+command! -bang W w<bang>
 
 " Numbers
 function! NumberToggle()
@@ -79,7 +83,8 @@ nnoremap <Down> :echoe "Use j"<CR>
 " Quicker window movement
 nnoremap <S-h> gT
 nnoremap <S-l> gt
-
+nnoremap <S-j> <ESC>20j
+nnoremap <S-k> <ESC>20k
 " statusline
 " %< Where to truncate
 " %n buffer number
