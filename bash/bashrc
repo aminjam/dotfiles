@@ -17,7 +17,9 @@ export PLATFORM=$(uname -s)
 alias vi='nvim'
 alias vim='nvim'
 alias l='ls -alF'
+alias ls='ls --color=auto'
 alias k5='kill -9 %%'
+alias tmux='tmux -2'
 alias grep='grep --color=auto'
 
 
