@@ -4,6 +4,9 @@ fi
 if [ -f ~/.git-completion.bash ]; then
   source ~/.git-prompt.sh
 fi
+if [ -d /home/yo/.gem/ruby/2.2.0/bin ]; then
+  export PATH="$PATH:/home/yo/.gem/ruby/2.2.0/bin"
+fi
 
 PS1='\[\e[1;32m\]\W\[\e[0;36m\]$(__git_ps1 " %s") > \[\e[0m\]'
 export CLICOLOR=1
@@ -11,6 +14,8 @@ export LSCOLORS=HxFxhxDxBxhxhxhxhxcxcx
 export EDITOR=nvim
 export LIBVA_DRIVER_NAME=vdpau
 export PLATFORM=$(uname -s)
+export GOPATH=$HOME/apps/go
+export PATH=$PATH:$GOPATH/bin
 
 # Aliases
 # -------------------------------------------------------------------
