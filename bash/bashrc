@@ -15,6 +15,7 @@ export EDITOR=nvim
 export LIBVA_DRIVER_NAME=vdpau
 export PLATFORM=$(uname -s)
 export GOPATH=$HOME/apps/go
+export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOPATH/bin
 
 # Aliases

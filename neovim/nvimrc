@@ -13,6 +13,11 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary',        { 'on': '<Plug>Commentary' }
 
+" Google-vim
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
+
 " Tmux
 Plug 'tpope/vim-tbone'
 
@@ -26,13 +31,26 @@ Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown'
 Plug 'honza/dockerfile.vim'
 Plug 'maksimr/vim-jsbeautify'
-
 call plug#end()
 
+try
+call maktaba#json#python#Disable()
+call glaive#Install()
+catch
+endtry
+
 if has('gui_running')
-  set guifont=Monaco:h14 columns=80 lines=40
+set guifont=Monaco:h14 columns=80 lines=40
 endif
 silent! colo seoul256
+
+" ----------------------------------------
+" Plugin Configuration
+" ----------------------------------------
+if has('vim_starting')
+  set runtimepath+=~/dotfiles/config
+endif
+runtime! golang.vim
 
 "
 let mapleader      = ' '
@@ -61,13 +79,13 @@ command! -bang W w<bang>
 
 " Numbers
 function! NumberToggle()
-  if(&relativenumber == 1)
-    set number
-    set relativenumber!
-  else
-    set number!
-    set relativenumber
-  endif
+if(&relativenumber == 1)
+set number
+set relativenumber!
+else
+set number!
+set relativenumber
+endif
 endfunc
 
 nnoremap <C-n> :call NumberToggle()<cr>
@@ -129,6 +147,6 @@ autocmd FileType gitcommit setlocal spell
 " ============================================================================
 
 if has('nvim')
-  let $FZF_DEFAULT_OPTS .= ' --inline-info'
+let $FZF_DEFAULT_OPTS .= ' --inline-info'
 endif
 nnoremap <C-o> :FZF -m<cr>
