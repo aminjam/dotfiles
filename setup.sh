@@ -54,6 +54,6 @@ main(){
 	config_bash
 	config_git
 	config_tmux
-	config_neovim
+	#config_neovim
 }
 main "$@"

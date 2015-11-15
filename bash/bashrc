@@ -17,11 +17,12 @@ export PLATFORM=$(uname -s)
 export GOPATH=$HOME/apps/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOPATH/bin
+export GO15VENDOREXPERIMENT=1
 
 # Aliases
 # -------------------------------------------------------------------
-alias vi='nvim'
-alias vim='nvim'
+#alias vi='nvim'
+#alias vim='nvim'
 alias l='ls -alF'
 alias ls='ls --color=auto'
 alias k5='kill -9 %%'
