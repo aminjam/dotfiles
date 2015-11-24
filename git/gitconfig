@@ -34,4 +34,4 @@
   colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
 [user]
   email = aminjam.software@gmail.com
-  name = aminjam
+  name = Amin Jams

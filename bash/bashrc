@@ -21,14 +21,22 @@ export GO15VENDOREXPERIMENT=1
 
 # Aliases
 # -------------------------------------------------------------------
-#alias vi='nvim'
-#alias vim='nvim'
+alias vi='nvim'
+alias vim='nvim'
 alias l='ls -alF'
 alias ls='ls --color=auto'
 alias k5='kill -9 %%'
 alias tmux='tmux -2'
 alias grep='grep --color=auto'
 
+if [ "$PLATFORM" = 'Linux' ]; then
+    alias open='xdg-open'
+fi
+
+#enable direnv (https://github.com/direnv/direnv)
+if which direnv > /dev/null; then
+	eval "$(direnv hook bash)"
+fi
 
 # boot2docker
 # --------------------------------------------------------------------
