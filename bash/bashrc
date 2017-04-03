@@ -31,20 +31,12 @@ alias grep='grep --color=auto'
 
 if [ "$PLATFORM" = 'Linux' ]; then
     alias open='xdg-open'
+    alias cleanup-packages='sudo pacman -Rns $(pacman -Qtdq)'
 fi
 
 #enable direnv (https://github.com/direnv/direnv)
 if which direnv > /dev/null; then
 	eval "$(direnv hook bash)"
-fi
-
-# boot2docker
-# --------------------------------------------------------------------
-if [ "$PLATFORM" = 'Darwin' ]; then
-  dockerinit() {
-    [ $(boot2docker status) = 'running' ] || boot2docker start
-    $(boot2docker shellinit 2> /dev/null)
-  }
 fi
 
 # fzf (https://github.com/junegunn/fzf)
